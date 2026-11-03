@@ -1,0 +1,14 @@
+# Local verify only; no GitLab compute (pipelines muted to stop failed-pipeline emails).
+# IMPORTANT: workflow when:never alone is INVALID ("at least one visible job") and
+# GitLab still creates failed empty pipelines that email. Keep a visible never-job.
+workflow:
+  rules:
+    - when: never
+
+ci_muted:
+  stage: .pre
+  image: alpine:3.20
+  script:
+    - echo "CI muted - local verify only; runners should never pick this up"
+  rules:
+    - when: never
